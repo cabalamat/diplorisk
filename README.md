@@ -6,10 +6,13 @@ but more historically accurate than either of those games.
 Diplorisk will feature some of the following:
 
 * raw materials, and trade in them
-* technology, tech levels, countries learning technology from others, and this affectinbg thier economies and miltiary cababilities
+* technology, tech levels, countries learning technology from others, and this affecting their economies and miltiary cababilities
 * economics
 * countries doing trade deals with each other
-* counties forming military alliances with each other
+* countries forming military alliances with each other
+* countries forming permanent orgasnisations for alliances (similar to NATO or the EU)
+* colonies
+* client states
 * different government systems: democracy, limited democracy, autocracy
 * leaders of countries being penalised if they make decisiopons the country's people don't like
 * revolutions
