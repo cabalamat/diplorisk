@@ -8,6 +8,6 @@ from allpages import *
 
 @app.route("/")
 def index():
-    return "this is the front page of Diporisk"
+    return "this is the front page of Diplorisk"
 
 #end
