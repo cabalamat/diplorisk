@@ -8,6 +8,8 @@ from allpages import *
 
 @app.route("/")
 def index():
-    return "this is the front page of Diplorisk"
+    tem = jinjaEnv.get_template("front.html")
+    h = tem.render()
+    return h
 
 #end
