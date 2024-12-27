@@ -89,7 +89,6 @@ h1 {
   border-bottom: 2px solid #666;
 }
 h2 {
-  border-bottom: 1px dotted;
 }
 h3 {
   font-style: italic;
@@ -493,115 +492,6 @@ a[href*="//"]:before {
   max-width: 90%;
 }
 
-/*------------------------------------------------------------------*/
-/* This is a bodge so that inside a table of contents, it makes the
-first item, which will be the <h1> title of the page, invisible */
-
-div.toc > ul {
-    padding-left: 20px;
-}
-
-div.toc > ul > li > a {
-   display: none;
-}
-
-div.toc > ul > li {
-   list-style-type: none;
-}
-
-div.toc > ul > li > ul {
-    margin-left: 0px;
-    padding-left: 0px;
-}
-
-/*------------------------------------------------------------------*/
-/* editing and toolbar */
-
-#edit_toolbar {
-    font-size: 18px;
-    //color: #060;
-    //background: #efe;
-    margin: 9px 0px 3px 0px;
-}
-
-#edit_toolbar .fa {
-    cursor: pointer;
-    padding: 3px 4px;
-}
-
-#edit_toolbar span :hover {
-    color: #faf;
-    background: #606;
-}
-
-tt.mono_tool {
-    font-size: 115%;
-    padding: 2px 2px 0px;
-}
-
-/*------------------------------------------------------------------*/
-/* history and diff pages */
-
-.hist_article_name {
-    color: #009;
-    background: #def;
-}
-
-/* github-like diff table */
-table.gh_diff_table {
-    border: 0px;
-    padding: 0px;
-    margin: 0px;
-    font-family: "Ubuntu Mono", monospace;
-}
-
-table.gh_diff_table th, .diff_table_header {
-    font-weight: bold;
-    border: 0px 5px;
-    font-family: "Ubuntu Mono", monospace;
-}
-
-.diff_group_info {
-    color: #036;
-    background: #cdf;
-    font-weight: bold;
-}
-
-.diff_group_info,
-.diff_unchanged_line, .diff_add_line, .diff_remove_line {
-    font-family: "Ubuntu Mono", monospace;
-}
-
-
-.diff_unchanged_line {
-    color: #000;
-    background: #e8f8ff;
-}
-.diff_add_line {
-    color: #060;
-    background: #efe;
-}
-.diff_remove_line {
-    color: #600;
-    background: #fee;
-}
-
-table.gh_diff_table td.line_num {
-    vertical-align: top;
-    text-align: right;
-}
-
-table.gh_diff_table td.icon_add_line {
-    padding: 0px 10px;
-    vertical-align: top;
-    color: #060;
-}
-table.gh_diff_table td.icon_remove_line {
-    padding: 0px 10px;
-    vertical-align: top;
-}
-
-
 
 /*------------------------------------------------------------------*/
 /* debugging */
@@ -620,66 +510,23 @@ table.gh_diff_table td.icon_remove_line {
   //display: none;
 }
 
-/*------------------------------------------------------------------*/
-/* printing */
-
-
-@media print {
-  p,a,i,b,body {
-    font-size: 10pt;
-    line-height: 14pt;
-  }
-  tt, code, pre {
-    font-size: 10pt;
-  }
-
-  .wiki-navigation a:after, .loc-wiki-path a:after,
-  a:after, a:link:after {
-    content:"";/* don't print URL */
-  }
-
-  .wiki-commands {
-    visibility: collapse;
-    display:  none;
-  }
-
-
-}
 
 /*------------------------------------------------------------------*/
-/* cat icon */
+/* world map */
 
-@font-face {
-    font-family: 'icomoon';
-    src:url('fonts/icomoon.eot?qnlk2l');
-    src:url('fonts/icomoon.eot?#iefixqnlk2l') format('embedded-opentype'),
-        url('fonts/icomoon.woff?qnlk2l') format('woff'),
-        url('fonts/icomoon.ttf?qnlk2l') format('truetype'),
-        url('fonts/icomoon.svg?qnlk2l#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
+table.map {
+  margin: 0px;
+  border: 2px solid #000;
+  padding: 10px;
 }
 
-[class^="icon-"], [class*=" icon-"]  {
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
 
-    /* Better Font Rendering =========== */
-    //-webkit-font-smoothing: antialiased;
-    //-moz-osx-font-smoothing: grayscale;
+table.map td {
+
+  padding: 2px 4px;
+  vertical-align: top;
 }
 
-.icon-icon_e600:before, .icon-cat:before {
-    content: "\e600";
-}
-.icon-icon_e601:before {
-    content: "\e601";
-}
 
 /*------------------------------------------------------------------*/
 
