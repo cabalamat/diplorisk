@@ -2,12 +2,15 @@
 
 import random
 
+
 from utils import butil
 from utils.butil import form
 
 import wentity
 
 #---------------------------------------------------------------------
+
+squares = wentity.WEntityManager("square")
 
 class Square(wentity.WEntity):
     """ a square on a map """
@@ -18,20 +21,29 @@ class Square(wentity.WEntity):
 
     def __init__(self, wid):
         self.wid = wid
+        squares.add(self)
+
+    @classmethod
+    def entityType(cls) -> str:
+        return "square"
 
     def tdh(self):
         """ the representation of this square as a td (inside a table) """
         h = form("<td style='background:{}'>", self.bgCol())
-        h += self.wid
+        h += self.a()
         if self.isLand:
             h += "<br>" + self.name
         h += "</td>"
         return h
 
+    #===== for html output
+
     def bgCol(self) -> str:
         """ background colour """
         return "#ccffcc" if self.isLand else "#cceeff"
 
+    def longName(self) -> str:
+        return self.name if self.isLand else ""
 
 def makeRandomName() -> str:
     """ make a random name for a square """
@@ -40,7 +52,7 @@ def makeRandomName() -> str:
     for _ in range(nameLen):
         s1 = random.choice("p b t d k g f v s z h".split() + [""])
         s2 = random.choice("r y w l".split() + [""]*8)
-        vowel = random.choice("i e a o u ai ei au eu".split())
+        vowel = random.choice("i e a o u ai ei oi au".split())
         s3 = random.choice("p b t d k g f v s z".split() + [""]*6)
         syl = s1 + s2 + vowel + s3
         name += syl
@@ -93,7 +105,7 @@ class WorldMap:
         return h
 
 
-worldMap = WorldMap(rows=8, cols=8)
+worldMap = WorldMap(rows=8, cols=12)
 
 #---------------------------------------------------------------------
 

@@ -25,6 +25,17 @@ def drawMap():
     )
     return h
 
+#---------------------------------------------------------------------
+
+@app.route("/w/square/<wid>")
+def drawSquare(wid: str):
+    sq: Square = worldmap.squares.data[wid]
+    tem = jinjaEnv.get_template("square.html")
+    h = tem.render(
+        sq = sq,
+        localMap = None,
+    )
+    return h
 
 
 #---------------------------------------------------------------------
