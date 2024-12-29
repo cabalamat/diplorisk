@@ -1,0 +1,24 @@
+{# resource.html
+   =============
+
+A resource
+#}
+{% extends "main.html" %}
+
+{% block title %}
+Resource {{wid}}
+{% endblock %}
+
+{% block contents %}
+<div class="container-liquid" style="padding: 0px 20px;">
+
+<h2><i class='fas fa-cubes'></i> Resource {{widName}}</h2>
+
+{{resourceInfo}}
+
+<h3><i class='fa fa-tree'></i> {{widName}} is Found at</h3>
+
+</div>
+{% endblock contents %}
+
+{#end#}

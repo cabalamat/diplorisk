@@ -307,10 +307,10 @@ def sortedKv(c: Union[Dict,List]) -> Iterator[Tuple[Any,Any]]:
     if isinstance(c, list):
         return enumerate(c)
     else:
-        sk = sorted(d.keys())
+        sk = sorted(c.keys())
         result = []
         for k in sk:
-            yield (k, d[k])
+            yield (k, c[k])
 
 #---------------------------------------------------------------------
 

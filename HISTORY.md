@@ -27,6 +27,10 @@ Do earth regions first.
 TODO: For squares, create hyperlinks for each individual square:
 
 `/w/square/{{wid}}`
+--done
+
+TODO: resources, using url `/w/resource/{{wid}}`.
+-- done
 
 
 /end
