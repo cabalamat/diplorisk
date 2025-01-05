@@ -8,6 +8,7 @@ import allpages
 from allpages import *
 
 import worldmap
+from worldmap import worldMap
 import resource
 from resource import Resource, resourceManager
 
@@ -26,7 +27,7 @@ def drawMap():
     tem = jinjaEnv.get_template("map.html")
     h = tem.render(
         #theMap = "",
-        theMap = worldmap.worldMap.h(),
+        theMap = worldMap.h(),
     )
     return h
 
@@ -72,7 +73,7 @@ def resourceTable() -> str:
             </tr>
 """,
             wid = r.a(),
-            name = r.name,
+            name = r.aName(),
             fcol = r.fcol,
             bcol = r.bcol
 )
@@ -85,12 +86,43 @@ def resourceTable() -> str:
 @app.route("/w/resource/<wid>")
 def drawResource(wid: str):
     res: Resource = resourceManager.data[wid]
+    numLoc = len(worldMap.squaresForResource(res.wid))
     tem = jinjaEnv.get_template("resource.html")
     h = tem.render(
         wid = wid,
         widName = res.widName(),
+        numLoc = numLoc,
+        sqTable = sqTable(res)
     )
     return h
+
+def sqTable(res: Resource) -> str:
+    """ return a table of squares containing a resource """
+    h = """<table class='report_table'>
+        <tr>
+            <th>Location</th>
+            <th>Name</th>
+            <th>Resources</th>
+        </tr>"""
+    resId = res.wid
+    for sq in worldMap.squaresForResource(resId):
+        h += form("""
+            <tr>
+                <td>{wid}</td>
+                <td>{sqName}</td>
+                <td>{sqRes}</td>
+            </tr>
+""",
+            wid = sq.a(),
+            sqName = sq.name,
+            sqRes = sq.resourceH()
+)
+    #//for
+    h += "</table>\n"
+    return h
+
+
+
 #---------------------------------------------------------------------
 
 #end

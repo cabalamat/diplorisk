@@ -2,9 +2,10 @@
 
 import random
 random.seed(1234)
+from collections.abc import Iterable, Iterator
 
 from utils import butil
-from utils.butil import form, sortedKv
+from utils.butil import form, kv, sortedKv
 
 import wentity
 
@@ -65,6 +66,14 @@ class Square(wentity.WEntity):
         h += "</td>"
         return h
 
+    def resourceH(self) -> str:
+        """ return html for this square's resource """
+        h = ""
+        for res in self.resources:
+            h += res.a()
+        return h
+
+
     def localMap(self, prox: int) -> str:
         """ a map centered around this square
         prox = number of squares distance to see
@@ -74,7 +83,7 @@ class Square(wentity.WEntity):
         rTo = min(r + prox, config.NUM_ROWS - 1)
         rValues = list(range(rFrom, rTo+1))
         # cols wrap around, rows don't
-        cValues = [(c if c >= 0 else c + config.NUM_COLS)
+        cValues = [c % config.NUM_COLS
                    for c in range(c-prox, c+prox+1)]
         h = "<table class='map'>\n"
         for row in rValues:
@@ -124,6 +133,7 @@ class WorldMap:
     rows: int # number of rows in map
     cols: int # number of columns in map
     squares: list[list[Square]] = []
+    resourceLocs: dict[str, list[Square]] = {}
 
     def __init__(self, rows: int, cols: int):
         self.rows = rows
@@ -137,6 +147,7 @@ class WorldMap:
             self.squares.append(theRow)
         #//for r
         self.allocateResources()
+        self.listResources()
 
     def makeSquare(self, rix: int, cix: int) -> Square:
         """ make a random Square """
@@ -150,15 +161,34 @@ class WorldMap:
         return sq
 
     def allocateResources(self):
+        for sq in self.mySquares():
+            if not sq.isLand: continue
+            for _, res in sortedKv(resourceManager.data):
+                if random.random() < res.prob:
+                    sq.resources += [res]
+            #//for _,res
+        #// for sq
+
+    def mySquares(self) -> Iterator[Square]:
         for row in self.squares:
             for sq in row:
-                if not sq.isLand: continue
-                for _, res in sortedKv(resourceManager.data):
-                    if random.random() < res.prob:
-                        sq.resources += [res]
-                #//for _,res
-            #// for sq
-        #//for row
+                yield sq
+
+
+    def listResources(self):
+        """ make a list of where the resources are, and put it
+        in (resourceLocs).
+        """
+        for resId,_ in kv(resourceManager.data):
+            self.resourceLocs[resId] = []
+        #//for
+        for sq in self.mySquares():
+            for sqRes in sq.resources:
+                self.resourceLocs[sqRes.wid].append(sq)
+        #//for sq
+
+    def squaresForResource(self, resId: str) -> list[Square]:
+        return self.resourceLocs[resId]
 
     def h(self) -> str:
         """ return an html representation """

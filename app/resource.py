@@ -36,6 +36,13 @@ class Resource(wentity.WEntity):
     def entityType(cls) -> str:
         return "resource"
 
+    def aName(self) -> str:
+        """ return HTML for an a href to the entity """
+        h = form("<a href='{u}'>{w}</a>",
+                 u=self.url(),
+                 w=self.name)
+        return h
+
     def icon(self)-> str:
         return "<i class='fas fa-cubes'></i> "
 

@@ -32,5 +32,10 @@ TODO: For squares, create hyperlinks for each individual square:
 TODO: resources, using url `/w/resource/{{wid}}`.
 -- done
 
+## 2025-Jan-05
+
+Fixed bug in map not correctly cycling on longitude.
+
+
 
 /end
