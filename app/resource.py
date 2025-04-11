@@ -77,14 +77,12 @@ blurb
 """
 
 RESOURCES = """\
-C:Coal:        ffffff:000000:15:10
 Fe:Iron:       ffdddd:662222:15:10
-oil:Oil:       99ff99:224422:10:15
+U:Uranium:     99ff99:224422:10:15
 Al:Aluminium:  440000:eebbbb:10:5
 Cu:Copper:     004400:99ff99:10:5
 Zn:Zinc:       000000:eeeeee:10:5
 Sn:Tin:        000000:cccccc:10:5
-rub:Rubber:    eeddbb:332200:10:5
 W:Tungsten:    220088:bbaacc:8:5
 Mn:Manganese:  001166:ccddff:8:5
 Cr:Chromium:   ffffff:660088:8:5

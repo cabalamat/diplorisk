@@ -44,7 +44,7 @@ class Square(wentity.WEntity):
 
     def bgCol(self) -> str:
         """ background colour """
-        return "#ccffcc" if self.isLand else "#cceeff"
+        return "#ccffcc" if self.isLand else "#000000"
 
     def longName(self) -> str:
         return self.name if self.isLand else ""
@@ -56,9 +56,16 @@ class Square(wentity.WEntity):
     def tdh(self):
         """ the representation of this square as a td (inside a table) """
         h = form("<td style='background:{}'>", self.bgCol())
+
         h += self.a()
         if self.isLand:
+            h += " <i class='fa fa-star'></i>"
+            h += " <i class='fa fa-flag'></i>"
             h += "<br>" + self.name
+        else:
+            # empty
+            pass
+
         resH = ""
         for res in self.resources:
             resH += res.a()
@@ -101,30 +108,24 @@ class Square(wentity.WEntity):
 
 #---------------------------------------------------------------------
 
+def makeRandomSylable() -> str:
+    """ make a random sylable for a name """
+    s1 = random.choice("p b t d k g f v s z h".split() + [""]*2)
+    s2 = random.choice("r y".split() + [""]*9)
+    vowel = random.choice("i e a o u oi au".split())
+    s3 = random.choice("p b t d k g f v s z".split() + [""]*9)
+    syl = s1 + s2 + vowel + s3
+    return syl
+
 def makeRandomName() -> str:
     """ make a random name for a square """
-    nameLen = random.choice([1,2,2,3])
     name = ""
-    for _ in range(nameLen):
-        s1 = random.choice("p b t d k g f v s z h".split() + [""])
-        s2 = random.choice("r y w l".split() + [""]*8)
-        vowel = random.choice("i e a o u ai ei oi au".split())
-        s3 = random.choice("p b t d k g f v s z".split() + [""]*6)
-        syl = s1 + s2 + vowel + s3
-        name += syl
-    #//for _
+    while True:
+        name += makeRandomSylable()
+        if len(name) >= random.randint(3,6): break
+    #//while
     return name[0].upper() + name[1:]
 
-def makeSquare(rix: int, cix: int) -> Square:
-    """ make a random Square """
-    wid = "%02d%02d" % (rix, cix)
-    sq = Square(wid)
-    if random.random() < 0.5:
-        sq.isLand = False # make it sea
-        sq.name = wid
-    else:
-        sq.name = makeRandomName()
-    return sq
 
 #---------------------------------------------------------------------
 
@@ -153,7 +154,7 @@ class WorldMap:
         """ make a random Square """
         wid = "%02d%02d" % (rix, cix)
         sq = Square(wid, self)
-        if random.random() < 0.5:
+        if random.random() < 0.6:
             sq.isLand = False # make it sea
             sq.name = wid
         else:
