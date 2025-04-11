@@ -164,7 +164,7 @@ class WorldMap:
         for sq in self.mySquares():
             if not sq.isLand: continue
             for _, res in sortedKv(resourceManager.data):
-                if random.random() < res.prob:
+                if random.random() < res.probPc/100:
                     sq.resources += [res]
             #//for _,res
         #// for sq

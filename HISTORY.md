@@ -36,6 +36,9 @@ TODO: resources, using url `/w/resource/{{wid}}`.
 
 Fixed bug in map not correctly cycling on longitude.
 
+## 2025-Apr-11
+
+Repurposed to be a space gmae similar to MOO.
 
 
 /end

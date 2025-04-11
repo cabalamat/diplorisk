@@ -56,10 +56,10 @@ def resourceTable() -> str:
     """ a table of resources """
     h = """<table class='report_table'>
         <tr>
-            <th>Wid</th>
+            <th>Id</th>
             <th>Name</th>
-            <th>fcol</th>
-            <th>bcol</th>
+            <th>Probability</th>
+            <th>Importance</th>
             <th>blurb</th>
         </tr>"""
     for wid, r in sortedKv(resource.resourceManager.data):
@@ -67,15 +67,15 @@ def resourceTable() -> str:
             <tr>
                 <td>{wid}</td>
                 <td>{name}</td>
-                <td><tt>{fcol}</tt></td>
-                <td><tt>{bcol}</tt></td>
+                <td align=right><tt>{prob}</tt></td>
+                <td align=right><tt>{imp}</tt></td>
                 <td>(blurb)</td>
             </tr>
 """,
             wid = r.a(),
             name = r.aName(),
-            fcol = r.fcol,
-            bcol = r.bcol
+            prob = r.probPc,
+            imp = r.impPc
 )
     #//for wid, r
     h += "</table>\n"
